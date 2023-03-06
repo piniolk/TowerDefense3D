@@ -8,7 +8,7 @@ public class GridObject {
     private bool isFilled;
     private bool isPlaceable;
     private GridPosition gridPosition;
-    //private Tower tower;
+    private GameObject tower;
 
     public GridObject(GridSystem gridSystem, GridPosition gridPosition) {
         this.gridSystem = gridSystem;
@@ -32,6 +32,7 @@ public class GridObject {
     public bool SetTower(GameObject tower) {
         if (!this.isFilled && isPlaceable) {
             this.isFilled = true;
+            this.tower = tower;
             return true;
         }
         return false;
@@ -39,7 +40,15 @@ public class GridObject {
 
     public void RemoveTower() {
         this.isFilled = false;
+        GameObject.Destroy(this.tower);
+        this.tower = null;
     }
 
-    //public Tower GetTower(){}
+    public GameObject GetTower() {
+        return this.tower;
+    }
+
+    public void HandleTowerInfo() {
+        this.tower.GetComponent<TowerBase>().HandleTowerInfo();
+    }
 }

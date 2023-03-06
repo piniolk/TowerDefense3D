@@ -7,14 +7,14 @@ public class EnemyAI : MonoBehaviour {
 
     private int health;
     private int __maxHealth__;
-    private float speed;
+    //private float speed;
     private float coinsDropped;
     [SerializeField] private Slider healthBar;
 
     private void Start() {
         __maxHealth__ = 100;
         health = __maxHealth__;
-        speed = 5f;
+    //    speed = 5f;
         coinsDropped = 10f;
     }
 

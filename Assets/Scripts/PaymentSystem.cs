@@ -18,7 +18,7 @@ public class PaymentSystem : MonoBehaviour {
 
     private void Start() {
         this.coins = 0;
-        this.coinMultiplier = 1f;
+        this.coinMultiplier = 10f;
     }
 
     private void Update() {
@@ -26,10 +26,6 @@ public class PaymentSystem : MonoBehaviour {
             this.coins += 5 * this.coinMultiplier * Time.deltaTime;
             this.coinText.text = this.coins.ToString("#.0");
         }
-    }
-
-    public int GetCoinCost() {
-        return this.coinCost;
     }
 
     public float GetCoins() {

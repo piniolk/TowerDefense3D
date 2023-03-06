@@ -51,4 +51,8 @@ public class GridMechanics : MonoBehaviour {
     public bool CheckIfFillable(Vector3 worldPosition) {
         return gridSystem.CheckIfFillable(worldPosition);
     }
+
+    public GridObject GetTower(GridPosition gridPosition) {
+        return gridSystem.GetTower(gridPosition);
+    }
 }

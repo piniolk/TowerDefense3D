@@ -12,6 +12,10 @@ public class UISelect : MonoBehaviour {
     private bool isCurrentlyPlacingTower;
     private PlayerControlActions playerControlActions;
 
+    private void Awake() {
+        Instance = this;
+    }
+
     private void Start() {
         playerControlActions = new PlayerControlActions();
         playerControlActions.Mouse.Enable();
@@ -24,7 +28,7 @@ public class UISelect : MonoBehaviour {
     public void TowerButtonClick() {
         //NOTE: still places tower if you click button over plane
         //refactor later
-        if ((float)PaymentSystem.Instance.GetCoins() > PaymentSystem.Instance.GetCoinCost()) {
+        if ((float)PaymentSystem.Instance.GetCoins() > TowerSystem.Instance.GetTowerType().GetComponent<TowerBase>().GetTowerCost()) {
             if (isCurrentlyPlacingTower) {
                 //button was pressed and want to cancel
                 isCurrentlyPlacingTower = false;
@@ -61,5 +65,9 @@ public class UISelect : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public bool GetIfCurrentlyPlacingTower() {
+        return this.isCurrentlyPlacingTower;
     }
 }

@@ -79,4 +79,8 @@ public class GridSystem {
         GridPosition gridPosition = GetGridPosition(worldPosition);
         return !gridObjectArray[gridPosition.x, gridPosition.y, gridPosition.z].GetIsFilled();
     }
+
+    public GridObject GetTower(GridPosition gridPosition) {
+        return gridObjectArray[gridPosition.x, gridPosition.y, gridPosition.z];
+    }
 }
