@@ -21,7 +21,23 @@ public class UISelect : MonoBehaviour {
         PlaceTower();
     }
 
-    public void NewTower() {
+    public void TowerButtonClick() {
+        //NOTE: still places tower if you click button over plane
+        //refactor later
+        if ((float)PaymentSystem.Instance.GetCoins() > PaymentSystem.Instance.GetCoinCost()) {
+            if (isCurrentlyPlacingTower) {
+                //button was pressed and want to cancel
+                isCurrentlyPlacingTower = false;
+                Destroy(placingTower);
+                placingTower = null;
+            } else {
+                //button has not been pressed yet
+                NewTower();
+            }
+        }
+    }
+
+    private void NewTower() {
         Vector3 mousePosition = MousePosition.Instance.GetWorldPosition();
         mousePosition.y = 1;
         placingTower = Instantiate(testTowerBasePrefab, mousePosition, Quaternion.identity) as GameObject;
@@ -32,10 +48,16 @@ public class UISelect : MonoBehaviour {
         if (isCurrentlyPlacingTower) {
             if (MousePosition.Instance.TryGetWorldPosition()) {
                 Vector3 mousePosition = MousePosition.Instance.GetWorldPosition();
-                mousePosition.y = 1;
-                placingTower.transform.position = mousePosition;
+                GridPosition gridPos = GridMechanics.Instance.GetGridPosition(mousePosition);
+                Vector3 worldPos = GridMechanics.Instance.GetWorldPosition(gridPos);
+                worldPos.y = 1;
+                placingTower.transform.position = worldPos;
                 if (playerControlActions.Mouse.Click.WasPressedThisFrame()) {
-                    isCurrentlyPlacingTower = false;
+                    if (GridMechanics.Instance.CheckIfPlaceable(gridPos) && GridMechanics.Instance.CheckIfFillable(gridPos)) {
+                        GridMechanics.Instance.PlaceTower(gridPos, placingTower);
+                        isCurrentlyPlacingTower = false;
+                        PaymentSystem.Instance.BuyTower();
+                    }
                 }
             }
         }

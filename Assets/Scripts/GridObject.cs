@@ -14,7 +14,7 @@ public class GridObject {
         this.gridSystem = gridSystem;
         this.gridPosition = gridPosition;
         this.isFilled = false;
-        this.isPlaceable = false;
+        this.isPlaceable = true;
     }
 
     public bool GetIsPlaceable() {
@@ -29,7 +29,7 @@ public class GridObject {
         return isFilled;
     }
 
-    public bool SetTower() {
+    public bool SetTower(GameObject tower) {
         if (!this.isFilled && isPlaceable) {
             this.isFilled = true;
             return true;

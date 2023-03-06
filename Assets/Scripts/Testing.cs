@@ -5,7 +5,6 @@ using UnityEngine;
 public class Testing : MonoBehaviour {
     // Start is called before the first frame update
     private void Start() {
-        new GridSystem();
     }
 
     // Update is called once per frame

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GridSystem {
+
     private int width = 15;
     private int length = 15;
     private int height = 1;
     private int cellSize = 2;
     private GridObject[,,] gridObjectArray;
-
 
     public GridSystem() {
         gridObjectArray = new GridObject[width, height, length];
@@ -17,11 +17,32 @@ public class GridSystem {
                 for (int y = 0; y < height; y++) {
                     Debug.DrawLine(GetWorldPosition(x, y, z), GetWorldPosition(x, y, z) + Vector3.right * .2f, Color.white, 1000);
                     GridPosition gridPos = new GridPosition(x, y, z);
-                    gridObjectArray[x,y,z] = new GridObject(this, gridPos);
+                    gridObjectArray[x, y, z] = new GridObject(this, gridPos);
+                }
+            }
+        }
+    }
+
+    public GridSystem(int width, int height, int length) {
+        gridObjectArray = new GridObject[width, height, length];
+        for (int x = 0; x < width; x++) {
+            for (int z = 0; z < length; z++) {
+                for (int y = 0; y < height; y++) {
+                    Debug.DrawLine(GetWorldPosition(x, y, z), GetWorldPosition(x, y, z) + Vector3.right * .2f, Color.white, 1000);
+                    GridPosition gridPos = new GridPosition(x, y, z);
+                    gridObjectArray[x, y, z] = new GridObject(this, gridPos);
                 }
             }
         }
 
+    }
+
+    public int GetCellSize() {
+        return cellSize;
+    }
+
+    public Vector3 GetWorldPosition(GridPosition gridPosition) {
+        return new Vector3(gridPosition.x * cellSize, gridPosition.y * cellSize, gridPosition.z * cellSize);
     }
 
     public Vector3 GetWorldPosition(int x, int y, int z) {
@@ -33,13 +54,29 @@ public class GridSystem {
         int y = Mathf.RoundToInt(worldPosition.y / cellSize);
         int z = Mathf.RoundToInt(worldPosition.z / cellSize);
 
+        //Debug.Log("2: " + new GridPosition(x, y, z));
         return new GridPosition(x, y, z);
     }
 
-    public void PlaceTower(GridPosition gridposition) {
-        if (gridObjectArray[gridposition.x, gridposition.y, gridposition.z].GetIsPlaceable()) {
-            //check size if all for GetIsFilled and on the x if is placeable
-            //if so place tower and fill in 
-        }
+    public void PlaceTower(GridPosition gridPosition, GameObject tower) {
+        gridObjectArray[gridPosition.x, gridPosition.y, gridPosition.z].SetTower(tower);
+    }
+
+    public bool CheckIfPlaceable(GridPosition gridPosition) {
+        return gridObjectArray[gridPosition.x, gridPosition.y, gridPosition.z].GetIsPlaceable();
+    }
+
+    public bool CheckIfPlaceable(Vector3 worldPosition) {
+        GridPosition gridPosition = GetGridPosition(worldPosition);
+        return gridObjectArray[gridPosition.x, gridPosition.y, gridPosition.z].GetIsPlaceable();
+    }
+
+    public bool CheckIfFillable(GridPosition gridPosition) {
+        return !gridObjectArray[gridPosition.x, gridPosition.y, gridPosition.z].GetIsFilled();
+    }
+
+    public bool CheckIfFillable(Vector3 worldPosition) {
+        GridPosition gridPosition = GetGridPosition(worldPosition);
+        return !gridObjectArray[gridPosition.x, gridPosition.y, gridPosition.z].GetIsFilled();
     }
 }
