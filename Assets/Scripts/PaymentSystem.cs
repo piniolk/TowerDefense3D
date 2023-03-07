@@ -37,6 +37,11 @@ public class PaymentSystem : MonoBehaviour {
         this.coinText.text = this.coins.ToString("#.0");
     }
 
+    public void BuyTower(int coins) {
+        this.coins -= (float)coins;
+        this.coinText.text = this.coins.ToString("#.0");
+    }
+
     public void AddCoins(float coins) {
         if (this.coins + coins > this.__maxCoinAllowance__) {
             this.coins = this.__maxCoinAllowance__;

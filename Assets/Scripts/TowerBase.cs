@@ -9,19 +9,27 @@ public class TowerBase : MonoBehaviour {
     //private int health = 100;
     private int damage = 20;
     private int towerCost = 100;
+    private int towerLevel = 1;
+    private float attackRadiusMultiplier = 1f;
     private float rateOfFire = 5f;
     private float timer;
     private bool canFire = false;
     [SerializeField] private GameObject attackRadius;
     [SerializeField] GameObject towerInfoUI;
-
+    //private List<GameObject> enemiesInRange;
+    private static TowerAttackRangeCollider attackRange;
     private void Start() {
         timer = rateOfFire;
+        attackRange = attackRadius.GetComponent<TowerAttackRangeCollider>();
     }
 
     private void Update() {
+        Debug.Log(canFire);
         if (canFire) {
-            AttackClosestEnemy();
+            //this.enemiesInRange = attackRange.GetEnemiesInRange();
+            if (attackRange.GetLength() != 0) {
+                AttackClosestEnemy();
+            }
         } else {
             timer -= Time.deltaTime;
         }
@@ -44,26 +52,55 @@ public class TowerBase : MonoBehaviour {
     }
 
     private void AttackClosestEnemy() {
-        TowerAttackRangeCollider attackRange = attackRadius.GetComponent<TowerAttackRangeCollider>();
-        List<GameObject> enemiesInRange = attackRange.GetEnemiesInRange();
-        if (attackRange.GetLength() == 0) {
-
-        } else {
-            //find closest enemy
-            GameObject closestEnemy = enemiesInRange[0];
-            Vector3 towerPos = transform.position;
-            float closestEnemyRange = Mathf.Abs(Vector3.Distance(towerPos, closestEnemy.transform.position));
-            foreach (GameObject enemy in enemiesInRange) {
-                float enemyRange = Mathf.Abs(Vector3.Distance(towerPos, enemy.transform.position));
-                if (enemyRange < closestEnemyRange) {
-                    closestEnemyRange = enemyRange;
-                    closestEnemy = enemy;
-                }
-            }
-
-            //attack enemy
-            timer = rateOfFire;
-            canFire = false;
+        //find closest enemy
+        GameObject closestEnemy = attackRange.GetClosestEnemy();
+        if (closestEnemy == null) {
+            return;
         }
+        //attack enemy
+        closestEnemy.GetComponent<EnemyAI>().DamageTaken();
+        timer = rateOfFire;
+        canFire = false;
+
+    }
+
+    public void ChangeTowerCost() {
+        //if tower was bought or upgraded
+        this.towerCost += Mathf.RoundToInt(this.towerCost / 2);
+    }
+
+    public void UpgradeTower() {
+        if (PaymentSystem.Instance.GetCoins() > this.towerCost) {
+            PaymentSystem.Instance.BuyTower(this.towerCost);
+            ChangeTowerCost();
+            this.towerLevel++;
+            this.damage += Mathf.RoundToInt(this.damage / 2);
+            this.rateOfFire += Mathf.RoundToInt(this.rateOfFire / 2);
+            this.attackRadiusMultiplier += this.attackRadiusMultiplier / 2;
+        }
+    }
+
+    public string[] GetUpgradeInfo() {
+        int newLevel = this.towerLevel++;
+        int newDamage = this.damage + Mathf.RoundToInt(this.damage / 2);
+        float newROF = this.rateOfFire + Mathf.RoundToInt(this.rateOfFire / 2);
+        float newRadius = this.attackRadiusMultiplier + this.attackRadiusMultiplier / 2;
+        string[] upgradeInfo = {
+            newLevel.ToString(),
+            newDamage.ToString(),
+            newROF.ToString(),
+            newRadius.ToString()
+        };
+        return upgradeInfo;
+    }
+
+    public string[] GetTowerInfo() {
+        string[] upgradeInfo = {
+            this.towerLevel.ToString(),
+            this.damage.ToString(),
+            this.rateOfFire.ToString(),
+            this.attackRadius.ToString()
+        };
+        return upgradeInfo;
     }
 }

@@ -7,15 +7,23 @@ public class EnemyAI : MonoBehaviour {
 
     private int health;
     private int __maxHealth__;
-    //private float speed;
+    private float speed;
     private float coinsDropped;
     [SerializeField] private Slider healthBar;
 
     private void Start() {
         __maxHealth__ = 100;
         health = __maxHealth__;
-    //    speed = 5f;
+        speed = .5f;
         coinsDropped = 10f;
+    }
+
+    private void Update() {
+        if (GridMechanics.Instance.GetGridPosition(transform.position).x == GridMechanics.Instance.GetWidth()-1) {
+            return;
+        }
+        Vector3 movement = new Vector3(1, 0, 0);
+        transform.Translate(movement * speed* Time.deltaTime);
     }
 
     public void DamageTaken() {
@@ -23,6 +31,7 @@ public class EnemyAI : MonoBehaviour {
         if(health <= 0) {
             health = 0;
             PaymentSystem.Instance.AddCoins(coinsDropped);
+            EnemyManager.Instance.EnemyDeath();
             Destroy(gameObject);
         }
         float healthValue = (float)health / (float)__maxHealth__;

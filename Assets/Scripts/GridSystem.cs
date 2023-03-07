@@ -83,4 +83,16 @@ public class GridSystem {
     public GridObject GetTower(GridPosition gridPosition) {
         return gridObjectArray[gridPosition.x, gridPosition.y, gridPosition.z];
     }
+
+    public int GetWidth() {
+        return this.width;
+    }
+
+    public int GetHeight() {
+        return this.height;
+    }
+
+    public int GetLength() {
+        return this.length;
+    }
 }

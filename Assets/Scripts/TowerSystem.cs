@@ -43,9 +43,6 @@ public class TowerSystem : MonoBehaviour {
                 GridPosition gridPos = GridMechanics.Instance.GetGridPosition(towerClickedPos);
                 GridObject gridObject = GridMechanics.Instance.GetTower(gridPos);
 
-
-
-
                 if (selectedGridObject == gridObject) {
                     // hide current one
                        // empty selected obj to current
@@ -61,6 +58,7 @@ public class TowerSystem : MonoBehaviour {
                        // update selected obj to current
                     selectedGridObject = gridObject;
                 }
+                gridObject.GetTower().GetComponent<TowerBase>().ChangeTowerCost();
                 gridObject.HandleTowerInfo();
             }
         }

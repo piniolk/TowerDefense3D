@@ -55,4 +55,16 @@ public class GridMechanics : MonoBehaviour {
     public GridObject GetTower(GridPosition gridPosition) {
         return gridSystem.GetTower(gridPosition);
     }
+
+    public int GetWidth() {
+        return gridSystem.GetWidth();
+    }
+
+    public int GetHeight() {
+        return gridSystem.GetHeight();
+    }
+
+    public int GetLength() {
+        return gridSystem.GetLength();
+    }
 }

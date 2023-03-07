@@ -158,7 +158,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1807488693478839432}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5533090721277421546}
+        m_TargetAssemblyTypeName: TowerUIMenu, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &936543873049769856
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +518,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8085218844266632771}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5533090721277421546}
+        m_TargetAssemblyTypeName: TowerUIMenu, Assembly-CSharp
+        m_MethodName: SellTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2306769253335426506
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b24213129108654f8f0cdb8cef637fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRadius: {fileID: 0}
 --- !u!1 &3036264216315891134
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,6 +787,7 @@ GameObject:
   - component: {fileID: 4537740336827947512}
   - component: {fileID: 4537740336827947511}
   - component: {fileID: 4537740336827947515}
+  - component: {fileID: 5533090721277421546}
   m_Layer: 8
   m_Name: TowerTestBasePrefab
   m_TagString: Tower
@@ -816,6 +840,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRadius: {fileID: 2306769253335426506}
   towerInfoUI: {fileID: 5166447382149702957}
+--- !u!114 &5533090721277421546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4537740336827947508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16d579b0245df2b4da85ca5ec368fec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4781044413969344600
 GameObject:
   m_ObjectHideFlags: 0
