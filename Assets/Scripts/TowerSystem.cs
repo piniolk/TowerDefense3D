@@ -13,6 +13,11 @@ public class TowerSystem : MonoBehaviour {
     private GridObject selectedGridObject;
 
     private void Awake() {
+        if (Instance != null) {
+            Debug.LogError("There's more than one TowerSystem! " + transform + " - " + Instance);
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
     }
 

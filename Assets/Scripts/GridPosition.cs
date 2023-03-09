@@ -16,4 +16,11 @@ public struct GridPosition {
         return new GridPosition(a.x + b.x, a.y + b.y, a.z + b.z);
     }
 
+    public static bool operator ==(GridPosition a, GridPosition b) {
+        return a.x == b.x && a.y == b.y && a.z == b.z;
+    }
+
+    public static bool operator !=(GridPosition a, GridPosition b) {
+        return !(a==b);
+    }
 }

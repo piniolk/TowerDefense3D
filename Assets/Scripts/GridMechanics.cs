@@ -8,6 +8,11 @@ public class GridMechanics : MonoBehaviour {
     private GridSystem gridSystem;
 
     private void Awake() {
+        if (Instance != null) {
+            Debug.LogError("There's more than one GridMechanics! " + transform + " - " + Instance);
+            Destroy(gameObject);
+            return;
+        }
         gridSystem = new GridSystem();
     }
 
