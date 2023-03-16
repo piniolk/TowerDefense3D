@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\TowerSystem.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\GridObject.cs" />
+    <Compile Include="Assets\Scripts\CameraManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TutorialInfo\TextMesh Pro\Shaders\TMPro.cginc" />
