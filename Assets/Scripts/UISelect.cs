@@ -7,7 +7,7 @@ public class UISelect : MonoBehaviour {
 
     public static UISelect Instance { get; private set; }
     [SerializeField] private GameObject testTowerBasePrefab;
-    [SerializeField] private GameObject testTower;
+    [SerializeField] private GameObject testTowerPlacingPrefab;
     private GameObject placingTower;
     private bool isCurrentlyPlacingTower;
     private PlayerControlActions playerControlActions;
@@ -44,7 +44,7 @@ public class UISelect : MonoBehaviour {
     private void NewTower() {
         Vector3 mousePosition = MousePosition.Instance.GetWorldPosition();
         mousePosition.y = 1;
-        placingTower = Instantiate(testTowerBasePrefab, mousePosition, Quaternion.identity) as GameObject;
+        placingTower = Instantiate(testTowerPlacingPrefab, mousePosition, Quaternion.identity) as GameObject;
         isCurrentlyPlacingTower = true;
     }
 
@@ -58,9 +58,14 @@ public class UISelect : MonoBehaviour {
                 placingTower.transform.position = worldPos;
                 if (playerControlActions.Mouse.Click.WasPressedThisFrame()) {
                     if (GridMechanics.Instance.CheckIfPlaceable(gridPos) && GridMechanics.Instance.CheckIfFillable(gridPos)) {
+                        Destroy(placingTower);
+                        mousePosition.y = 1;
+                        placingTower = Instantiate(testTowerBasePrefab, mousePosition, Quaternion.identity) as GameObject;
                         GridMechanics.Instance.PlaceTower(gridPos, placingTower);
                         isCurrentlyPlacingTower = false;
                         PaymentSystem.Instance.BuyTower();
+                        GridMechanics.Instance.GetTower(gridPos).GetTower().GetComponent<TowerBase>().ChangeTowerCost();
+                        GridMechanics.Instance.GetTower(gridPos).GetTower().GetComponent<TowerUIMenu>().UpdateText();
                         TowerSystem.Instance.HandleUISelect(GridMechanics.Instance.GetTower(gridPos));
                     }
                 }

@@ -69,7 +69,6 @@ public class TowerSystem : MonoBehaviour {
             // update selected obj to current
             selectedGridObject = tower;
         }
-        tower.GetTower().GetComponent<TowerBase>().ChangeTowerCost();
         tower.HandleTowerInfo();
     }
 

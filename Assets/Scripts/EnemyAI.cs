@@ -51,8 +51,8 @@ public class EnemyAI : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    public void DamageTaken() {
-        health -= 25;
+    public void DamageTaken(int damage) {
+        health -= damage;
         if (health <= 0) {
             health = 0;
             PaymentSystem.Instance.AddCoins(coinsDropped);

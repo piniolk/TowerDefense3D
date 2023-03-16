@@ -10,6 +10,7 @@ public class TowerBase : MonoBehaviour {
     private int damage = 20;
     private int towerCost = 100;
     private int towerLevel = 1;
+    private int maxLevel = 5;
     private float attackRadiusMultiplier = 1f;
     private float rateOfFire = 1f;
     private float timer;
@@ -56,7 +57,7 @@ public class TowerBase : MonoBehaviour {
             return;
         }
         //attack enemy
-        closestEnemy.GetComponent<EnemyAI>().DamageTaken();
+        closestEnemy.GetComponent<EnemyAI>().DamageTaken(this.damage);
         timer = rateOfFire;
         canFire = false;
 
@@ -68,28 +69,35 @@ public class TowerBase : MonoBehaviour {
     }
 
     public void UpgradeTower() {
-        if (PaymentSystem.Instance.GetCoins() > this.towerCost) {
+        if (PaymentSystem.Instance.GetCoins() > this.towerCost && this.towerLevel < this.maxLevel) {
             PaymentSystem.Instance.BuyTower(this.towerCost);
             ChangeTowerCost();
             this.towerLevel++;
             this.damage += Mathf.RoundToInt(this.damage / 2);
             this.rateOfFire += Mathf.RoundToInt(this.rateOfFire / 2);
             this.attackRadiusMultiplier += this.attackRadiusMultiplier / 2;
+        } 
+        if(this.towerLevel == this.maxLevel) {
+            gameObject.GetComponent<TowerUIMenu>().DeleteUpgradeButton();
         }
     }
 
     public string[] GetUpgradeInfo() {
-        int newLevel = this.towerLevel++;
-        int newDamage = this.damage + Mathf.RoundToInt(this.damage / 2);
-        float newROF = this.rateOfFire + Mathf.RoundToInt(this.rateOfFire / 2);
-        float newRadius = this.attackRadiusMultiplier + this.attackRadiusMultiplier / 2;
-        string[] upgradeInfo = {
+        if (this.towerLevel < this.maxLevel) {
+            int newLevel = this.towerLevel;
+            newLevel++;
+            int newDamage = this.damage + Mathf.RoundToInt(this.damage / 2);
+            float newROF = this.rateOfFire + Mathf.RoundToInt(this.rateOfFire / 2);
+            float newRadius = this.attackRadiusMultiplier + this.attackRadiusMultiplier / 2;
+            string[] upgradeInfo = {
             newLevel.ToString(),
             newDamage.ToString(),
             newROF.ToString(),
             newRadius.ToString()
         };
-        return upgradeInfo;
+            return upgradeInfo;
+        }
+        return null;
     }
 
     public string[] GetTowerInfo() {
