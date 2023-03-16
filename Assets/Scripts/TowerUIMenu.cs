@@ -10,6 +10,7 @@ public class TowerUIMenu : MonoBehaviour {
         PaymentSystem.Instance.AddCoins(sellPrice);
         GridPosition gridPosition = GridMechanics.Instance.GetGridPosition(gameObject.transform.position);
         GridObject gridObject = GridMechanics.Instance.GetTower(gridPosition);
+        TowerSystem.Instance.SetNullToSelectedTower();
         gridObject.RemoveTower();
     }
 

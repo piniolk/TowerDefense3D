@@ -61,6 +61,7 @@ public class UISelect : MonoBehaviour {
                         GridMechanics.Instance.PlaceTower(gridPos, placingTower);
                         isCurrentlyPlacingTower = false;
                         PaymentSystem.Instance.BuyTower();
+                        TowerSystem.Instance.HandleUISelect(GridMechanics.Instance.GetTower(gridPos));
                     }
                 }
             }

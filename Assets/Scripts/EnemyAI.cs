@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour {
 
     private int health;
     private int __maxHealth__;
+    private bool canMove;
     private float speed;
     private float coinsDropped;
     private GridPosition fromPosition;
@@ -15,23 +16,39 @@ public class EnemyAI : MonoBehaviour {
     [SerializeField] private Slider healthBar;
 
     private void Start() {
+        canMove = true;
         __maxHealth__ = 100;
         health = __maxHealth__;
-        speed = 3f;
+        speed = 2f;
         this.coinsDropped = 10f;
         this.movementPath = LevelManager.Instance.GetEnemyTravelPath();
         GetInitialEnemyMovement();
     }
 
     private void Update() {
-        if (GridMechanics.Instance.GetGridPosition(transform.position).x == GridMechanics.Instance.GetWidth() - 1) {
+        /*if (GridMechanics.Instance.GetGridPosition(transform.position).x == GridMechanics.Instance.GetWidth() - 1) {
             return;
-        }
+        }*/
         if (CheckIfAtGridPosition()) {
+            canMove = false;
             GetEnemyMovement();
             transform.rotation = Quaternion.LookRotation((GridMechanics.Instance.GetWorldPosition(this.toPosition) - transform.position).normalized);
+            canMove = true;
+        } 
+        if(canMove){
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+    /*
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.CompareTag("End")) {
+            
+        }
+    }*/
+
+    private void Death() {
+        EnemyManager.Instance.EnemyDeath();
+        Destroy(gameObject);
     }
 
     public void DamageTaken() {
@@ -39,8 +56,7 @@ public class EnemyAI : MonoBehaviour {
         if (health <= 0) {
             health = 0;
             PaymentSystem.Instance.AddCoins(coinsDropped);
-            EnemyManager.Instance.EnemyDeath();
-            Destroy(gameObject);
+            Death();
         }
         float healthValue = (float)health / (float)__maxHealth__;
         healthBar.value = healthValue;
@@ -78,6 +94,11 @@ public class EnemyAI : MonoBehaviour {
             }
             check++;
         }
-        movementPath.RemoveAt(0);
+        if (movementPath.Count == 0) {
+            PlayerHealthSystem.Instance.ReachedByEnemy();
+            Death();
+        } else {
+            movementPath.RemoveAt(0);
+        }
     }
 }

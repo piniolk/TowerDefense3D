@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
     
     public static LevelManager Instance { get; private set; }
-    private List<GridPosition> enemyTravelPath;
+    //private List<GridPosition> enemyTravelPath;
 
     private void Awake() {
         if (Instance != null) {
@@ -15,13 +15,19 @@ public class LevelManager : MonoBehaviour {
         }
         Instance = this;
         //get enemy travel path
-        enemyTravelPath = new List<GridPosition>{ new GridPosition(0, 0, 0), 
-                                                  new GridPosition(3, 0, 0), 
-                                                  new  GridPosition(3, 0, 4), 
-                                                  new GridPosition(14, 0, 10)};
+        //enemyTravelPath = ;
     }
 
     public List<GridPosition> GetEnemyTravelPath() {
-        return enemyTravelPath;
+        return new List<GridPosition>{ new GridPosition(0, 0, 0),
+                                                  new GridPosition(3, 0, 0),
+                                                  new  GridPosition(3, 0, 4),
+                                                  new  GridPosition(7, 0, 4),
+                                                  new  GridPosition(7, 0, 7),
+                                                  new  GridPosition(10, 0, 7),
+                                                  new  GridPosition(10, 0, 9),
+                                                  new  GridPosition(10, 0, 13),
+                                                  new  GridPosition(14, 0, 13),
+                                                  new GridPosition(14, 0, 14)};
     }
 }

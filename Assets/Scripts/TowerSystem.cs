@@ -48,28 +48,36 @@ public class TowerSystem : MonoBehaviour {
                 GridPosition gridPos = GridMechanics.Instance.GetGridPosition(towerClickedPos);
                 GridObject gridObject = GridMechanics.Instance.GetTower(gridPos);
 
-                if (selectedGridObject == gridObject) {
-                    // hide current one
-                       // empty selected obj to current
-                    selectedGridObject = null;
-                } else if (selectedGridObject != null) {
-                    // show and one already on
-                      //handle info of old
-                      // update selected obj to current
-                    selectedGridObject.HandleTowerInfo();
-                    selectedGridObject = gridObject;
-                } else {
-                    // show and none on
-                       // update selected obj to current
-                    selectedGridObject = gridObject;
-                }
-                gridObject.GetTower().GetComponent<TowerBase>().ChangeTowerCost();
-                gridObject.HandleTowerInfo();
+                HandleUISelect(gridObject);
             }
         }
     }
 
+    public void HandleUISelect(GridObject tower) {
+        if (selectedGridObject == tower) {
+            // hide current one
+            // empty selected obj to current
+            selectedGridObject = null;
+        } else if (selectedGridObject != null) {
+            // show and one already on
+            //handle info of old
+            // update selected obj to current
+            selectedGridObject.HandleTowerInfo();
+            selectedGridObject = tower;
+        } else {
+            // show and none on
+            // update selected obj to current
+            selectedGridObject = tower;
+        }
+        tower.GetTower().GetComponent<TowerBase>().ChangeTowerCost();
+        tower.HandleTowerInfo();
+    }
+
     public GameObject GetTowerType() {
         return this.towerTypes;
+    }
+
+    public void SetNullToSelectedTower() {
+        this.selectedGridObject = null;
     }
 }

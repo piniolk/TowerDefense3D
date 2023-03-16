@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Testing.cs" />
     <Compile Include="Assets\Scripts\UISelect.cs" />
     <Compile Include="Assets\Scripts\TowerAttackRangeCollider.cs" />
+    <Compile Include="Assets\Scripts\PlayerHealthSystem.cs" />
     <Compile Include="Assets\Scripts\TowerUIMenu.cs" />
     <Compile Include="Assets\Scripts\GridSystem.cs" />
     <Compile Include="Assets\Scripts\TowerBase.cs" />

@@ -11,20 +11,18 @@ public class TowerBase : MonoBehaviour {
     private int towerCost = 100;
     private int towerLevel = 1;
     private float attackRadiusMultiplier = 1f;
-    private float rateOfFire = 5f;
+    private float rateOfFire = 1f;
     private float timer;
     private bool canFire = false;
     [SerializeField] private GameObject attackRadius;
-    [SerializeField] GameObject towerInfoUI;
+    [SerializeField] private GameObject towerInfoUI;
+    [SerializeField] private TowerAttackRangeCollider attackRange;
     //private List<GameObject> enemiesInRange;
-    private static TowerAttackRangeCollider attackRange;
     private void Start() {
         timer = rateOfFire;
-        attackRange = attackRadius.GetComponent<TowerAttackRangeCollider>();
     }
 
     private void Update() {
-        Debug.Log(canFire);
         if (canFire) {
             //this.enemiesInRange = attackRange.GetEnemiesInRange();
             if (attackRange.GetLength() != 0) {
