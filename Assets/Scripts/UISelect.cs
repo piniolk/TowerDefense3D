@@ -57,15 +57,17 @@ public class UISelect : MonoBehaviour {
                 worldPos.y += 1;
                 placingTower.transform.position = worldPos;
                 if (playerControlActions.Mouse.Click.WasPressedThisFrame()) {
-                    if (GridMechanics.Instance.CheckIfPlaceable(gridPos) && GridMechanics.Instance.CheckIfFillable(gridPos)) {
-                        Destroy(placingTower);
-                        placingTower = Instantiate(testTowerBasePrefab, worldPos, Quaternion.identity) as GameObject;
-                        GridMechanics.Instance.PlaceTower(gridPos, placingTower);
-                        isCurrentlyPlacingTower = false;
-                        PaymentSystem.Instance.BuyTower();
-                        GridMechanics.Instance.GetTower(gridPos).GetTower().GetComponent<TowerBase>().ChangeTowerCost();
-                        GridMechanics.Instance.GetTower(gridPos).GetTower().GetComponent<TowerUIMenu>().UpdateText();
-                        TowerSystem.Instance.HandleUISelect(GridMechanics.Instance.GetTower(gridPos));
+                    if (GridMechanics.Instance.CheckIfInGrid(gridPos)) {
+                        if (GridMechanics.Instance.CheckIfPlaceable(gridPos) && GridMechanics.Instance.CheckIfFillable(gridPos)) {
+                            Destroy(placingTower);
+                            placingTower = Instantiate(testTowerBasePrefab, worldPos, Quaternion.identity) as GameObject;
+                            GridMechanics.Instance.PlaceTower(gridPos, placingTower);
+                            isCurrentlyPlacingTower = false;
+                            PaymentSystem.Instance.BuyTower();
+                            GridMechanics.Instance.GetTower(gridPos).GetTower().GetComponent<TowerBase>().ChangeTowerCost();
+                            GridMechanics.Instance.GetTower(gridPos).GetTower().GetComponent<TowerUIMenu>().UpdateText();
+                            TowerSystem.Instance.HandleUISelect(GridMechanics.Instance.GetTower(gridPos));
+                        }
                     }
                 }
             }

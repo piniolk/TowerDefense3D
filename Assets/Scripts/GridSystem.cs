@@ -80,6 +80,21 @@ public class GridSystem {
         return !gridObjectArray[gridPosition.x, gridPosition.y, gridPosition.z].GetIsFilled();
     }
 
+    public bool CheckIfInGrid(Vector3 worldPos) {
+        GridPosition gridPos = GetGridPosition(worldPos);
+        if(gridPos.x < width && gridPos.y < height && gridPos.x < length) {
+            return true;
+        }
+        return false;
+    }
+
+    public bool CheckIfInGrid(GridPosition gridPos) {
+        if(gridPos.x < width && gridPos.y < height && gridPos.x < length) {
+            return true;
+        }
+        return false;
+    }
+
     public GridObject GetTower(GridPosition gridPosition) {
         return gridObjectArray[gridPosition.x, gridPosition.y, gridPosition.z];
     }

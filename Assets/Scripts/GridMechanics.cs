@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GridMechanics : MonoBehaviour {
-    
+
     public static GridMechanics Instance { get; private set; }
     private GridSystem gridSystem;
 
@@ -55,6 +55,14 @@ public class GridMechanics : MonoBehaviour {
 
     public bool CheckIfFillable(Vector3 worldPosition) {
         return gridSystem.CheckIfFillable(worldPosition);
+    }
+
+    public bool CheckIfInGrid(Vector3 worldPos) {
+        return gridSystem.CheckIfInGrid(worldPos);
+    }
+
+    public bool CheckIfInGrid(GridPosition gridPos) {
+        return gridSystem.CheckIfInGrid(gridPos);
     }
 
     public GridObject GetTower(GridPosition gridPosition) {
