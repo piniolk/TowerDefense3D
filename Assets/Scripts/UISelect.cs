@@ -43,7 +43,7 @@ public class UISelect : MonoBehaviour {
 
     private void NewTower() {
         Vector3 mousePosition = MousePosition.Instance.GetWorldPosition();
-        mousePosition.y = 1;
+        mousePosition.y += 1;
         placingTower = Instantiate(testTowerPlacingPrefab, mousePosition, Quaternion.identity) as GameObject;
         isCurrentlyPlacingTower = true;
     }
@@ -54,13 +54,12 @@ public class UISelect : MonoBehaviour {
                 Vector3 mousePosition = MousePosition.Instance.GetWorldPosition();
                 GridPosition gridPos = GridMechanics.Instance.GetGridPosition(mousePosition);
                 Vector3 worldPos = GridMechanics.Instance.GetWorldPosition(gridPos);
-                worldPos.y = 1;
+                worldPos.y += 1;
                 placingTower.transform.position = worldPos;
                 if (playerControlActions.Mouse.Click.WasPressedThisFrame()) {
                     if (GridMechanics.Instance.CheckIfPlaceable(gridPos) && GridMechanics.Instance.CheckIfFillable(gridPos)) {
                         Destroy(placingTower);
-                        mousePosition.y = 1;
-                        placingTower = Instantiate(testTowerBasePrefab, mousePosition, Quaternion.identity) as GameObject;
+                        placingTower = Instantiate(testTowerBasePrefab, worldPos, Quaternion.identity) as GameObject;
                         GridMechanics.Instance.PlaceTower(gridPos, placingTower);
                         isCurrentlyPlacingTower = false;
                         PaymentSystem.Instance.BuyTower();

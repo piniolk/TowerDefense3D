@@ -25,7 +25,8 @@ public class LevelManager : MonoBehaviour {
                                                   new  GridPosition(7, 0, 4),
                                                   new  GridPosition(7, 0, 7),
                                                   new  GridPosition(10, 0, 7),
-                                                  new  GridPosition(10, 0, 9),
+                                                  new  GridPosition(10, 1, 8),
+                                                  new  GridPosition(10, 1, 12),
                                                   new  GridPosition(10, 0, 13),
                                                   new  GridPosition(14, 0, 13),
                                                   new GridPosition(14, 0, 14)};

@@ -11,7 +11,7 @@ public class TowerBase : MonoBehaviour {
     private int towerCost = 100;
     private int towerLevel = 1;
     private int maxLevel = 5;
-    private float attackRadiusMultiplier = 1f;
+    private float attackRadiusScale = 5f;
     private float rateOfFire = 1f;
     private float timer;
     private bool canFire = false;
@@ -75,11 +75,16 @@ public class TowerBase : MonoBehaviour {
             this.towerLevel++;
             this.damage += Mathf.RoundToInt(this.damage / 2);
             this.rateOfFire += Mathf.RoundToInt(this.rateOfFire / 2);
-            this.attackRadiusMultiplier += this.attackRadiusMultiplier / 2;
+            this.attackRadiusScale += this.attackRadiusScale / 4;
+            ExpandRadius();
         } 
         if(this.towerLevel == this.maxLevel) {
             gameObject.GetComponent<TowerUIMenu>().DeleteUpgradeButton();
         }
+    }
+
+    private void ExpandRadius() {
+        attackRadius.transform.localScale = new Vector3(this.attackRadiusScale, this.attackRadiusScale, this.attackRadiusScale);
     }
 
     public string[] GetUpgradeInfo() {
@@ -88,7 +93,7 @@ public class TowerBase : MonoBehaviour {
             newLevel++;
             int newDamage = this.damage + Mathf.RoundToInt(this.damage / 2);
             float newROF = this.rateOfFire + Mathf.RoundToInt(this.rateOfFire / 2);
-            float newRadius = this.attackRadiusMultiplier + this.attackRadiusMultiplier / 2;
+            float newRadius = this.attackRadiusScale + this.attackRadiusScale / 2;
             string[] upgradeInfo = {
             newLevel.ToString(),
             newDamage.ToString(),
