@@ -5,61 +5,52 @@ using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour {
 
-    private int health;
-    private int __maxHealth__;
-    private bool canMove;
-    private float speed;
-    private float coinsDropped;
-    private GridPosition fromPosition;
-    private GridPosition toPosition;
-    private List<GridPosition> movementPath;
+    protected int health;
+    [SerializeField] protected int __maxHealth__;
+    protected bool canMove;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float coinsDropped;
+    protected GridPosition fromPosition;
+    protected GridPosition toPosition;
+    protected List<GridPosition> movementPath;
     [SerializeField] private Slider healthBar;
 
-    private void Start() {
-        canMove = true;
-        __maxHealth__ = 100;
-        health = __maxHealth__;
-        speed = 2f;
-        this.coinsDropped = 10f;
+    protected void Start() {
+        this.canMove = true;
+        //this.__maxHealth__ = 100;
+        this.health = this.__maxHealth__;
+        //this.speed = 2f;
+        //this.coinsDropped = 10f;
         this.movementPath = LevelManager.Instance.GetEnemyTravelPath();
         GetInitialEnemyMovement();
     }
 
-    private void Update() {
-        /*if (GridMechanics.Instance.GetGridPosition(transform.position).x == GridMechanics.Instance.GetWidth() - 1) {
-            return;
-        }*/
+    protected void Update() {
         if (CheckIfAtGridPosition()) {
-            canMove = false;
+            this.canMove = false;
             GetEnemyMovement();
             transform.rotation = Quaternion.LookRotation((GridMechanics.Instance.GetWorldPosition(this.toPosition) - transform.position).normalized);
-            canMove = true;
+            this.canMove = true;
         } 
-        if(canMove){
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        if(this.canMove){
+            transform.Translate(Vector3.forward * this.speed * Time.deltaTime);
         }
     }
-    /*
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.CompareTag("End")) {
-            
-        }
-    }*/
 
-    private void Death() {
+    protected void Death() {
         EnemyManager.Instance.EnemyDeath();
         Destroy(gameObject);
     }
 
     public void DamageTaken(int damage) {
-        health -= damage;
-        if (health <= 0) {
-            health = 0;
-            PaymentSystem.Instance.AddCoins(coinsDropped);
+        this.health -= damage;
+        if (this.health <= 0) {
+            this.health = 0;
+            PaymentSystem.Instance.AddCoins(this.coinsDropped);
             Death();
         }
-        float healthValue = (float)health / (float)__maxHealth__;
-        healthBar.value = healthValue;
+        float healthValue = (float)this.health / (float)this.__maxHealth__;
+        this.healthBar.value = healthValue;
     }
 
     public bool CheckIfAtGridPosition() {

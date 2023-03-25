@@ -49,6 +49,8 @@ public class TowerUIMenu : MonoBehaviour {
             count++;
         };
 
+        costText.text = gameObject.GetComponent<TowerBase>().GetTowerCost().ToString();
+
         if (gameObject.GetComponent<TowerBase>().GetUpgradeInfo() != null) {
             count = 0;
             foreach (string str in gameObject.GetComponent<TowerBase>().GetUpgradeInfo()) {
@@ -66,8 +68,9 @@ public class TowerUIMenu : MonoBehaviour {
                 }
                 count++;
             }
+        } else {
+            costText.text = "";
         };
 
-        costText.text = gameObject.GetComponent<TowerBase>().GetTowerCost().ToString();
     }
 }

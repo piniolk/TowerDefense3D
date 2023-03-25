@@ -220,7 +220,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d76d5dba59c8a824a8170635648a356c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -498,7 +498,7 @@ GameObject:
   - component: {fileID: 9065568715195306876}
   - component: {fileID: -7366046663557930516}
   m_Layer: 0
-  m_Name: EnemyTestBasePrefabV2
+  m_Name: EnemyTestBasePrefabV2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -534,9 +534,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c21c7390694184c849eae634dcba84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  __maxHealth__: 100
-  speed: 2
-  coinsDropped: 10
+  __maxHealth__: 500
+  speed: 1
+  coinsDropped: 50
   healthBar: {fileID: 4717471199810216770}
 --- !u!65 &9065568715195306876
 BoxCollider:

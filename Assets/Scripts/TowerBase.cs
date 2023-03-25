@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class TowerBase : MonoBehaviour {
 
-    private GridPosition gridPosition;
-    //private int height = 1;
-    //private int health = 100;
-    private int damage = 20;
-    private int towerCost = 100;
-    private int towerLevel = 1;
-    private int maxLevel = 5;
-    private float attackRadiusScale = 5f;
-    private float rateOfFire = 1f;
-    private float timer;
-    private bool canFire = false;
-    [SerializeField] private GameObject attackRadius;
-    [SerializeField] private GameObject towerInfoUI;
-    [SerializeField] private TowerAttackRangeCollider attackRange;
+    protected GridPosition gridPosition;
+    protected int damage;
+    protected int towerCost;
+    protected int towerLevel;
+    protected int maxLevel;
+    protected float attackRadiusScale;
+    protected float rateOfFire;
+    protected float timer;
+    protected bool canFire = false;
+    [SerializeField] protected GameObject attackRadius;
+    [SerializeField] protected GameObject towerInfoUI;
+    [SerializeField] protected TowerAttackRangeCollider attackRange;
     //private List<GameObject> enemiesInRange;
-    private void Start() {
-        timer = rateOfFire;
+
+    protected void Awake() {
+        this.damage = 20;
+        this.towerCost = 100;
+        this.towerLevel = 1;
+        this.maxLevel = 5;
+        this.attackRadiusScale = 5f;
+        this.rateOfFire = 1f;
+        this.timer = this.rateOfFire;
     }
 
-    private void Update() {
+    protected void Update() {
         if (canFire) {
             //this.enemiesInRange = attackRange.GetEnemiesInRange();
             if (attackRange.GetLength() != 0) {
@@ -50,7 +55,7 @@ public class TowerBase : MonoBehaviour {
         return this.towerCost;
     }
 
-    private void AttackClosestEnemy() {
+    protected void AttackClosestEnemy() {
         //find closest enemy
         GameObject closestEnemy = attackRange.GetClosestEnemy();
         if (closestEnemy == null) {
@@ -83,7 +88,7 @@ public class TowerBase : MonoBehaviour {
         }
     }
 
-    private void ExpandRadius() {
+    protected void ExpandRadius() {
         attackRadius.transform.localScale = new Vector3(this.attackRadiusScale, this.attackRadiusScale, this.attackRadiusScale);
     }
 
