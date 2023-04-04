@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class TowerSystem : MonoBehaviour {
@@ -42,13 +43,15 @@ public class TowerSystem : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, towerLayerMask)) {
             if (playerControlActions.Mouse.Click.WasPressedThisFrame()) {
-                GameObject towerClicked = raycastHit.transform.gameObject;
-                Vector3 towerClickedPos = towerClicked.GetComponent<Transform>().position;
-                towerClickedPos.y -= 1;
-                GridPosition gridPos = GridMechanics.Instance.GetGridPosition(towerClickedPos);
-                GridObject gridObject = GridMechanics.Instance.GetTower(gridPos);
+                if (!EventSystem.current.IsPointerOverGameObject()) {
+                    GameObject towerClicked = raycastHit.transform.gameObject;
+                    Vector3 towerClickedPos = towerClicked.GetComponent<Transform>().position;
+                    towerClickedPos.y -= 1;
+                    GridPosition gridPos = GridMechanics.Instance.GetGridPosition(towerClickedPos);
+                    GridObject gridObject = GridMechanics.Instance.GetTower(gridPos);
 
-                HandleUISelect(gridObject);
+                    HandleUISelect(gridObject);
+                }
             }
         }
     }

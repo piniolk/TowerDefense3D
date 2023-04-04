@@ -41,29 +41,34 @@ public class EnemyManager : MonoBehaviour {
         this.enemiesTypeTotal = 0;
         this.waveNum = 0;
         this.waveMaxNum = 5;
-        this.maxNumPerWave = 30;
+        this.maxNumPerWave = 30; 
         this.maxTypeNumPerWave = 10;
     }
 
     private void Update() {
-        if (waveTimer >= waveBuff) {
+        if (this.waveTimer >= this.waveBuff) {
             SpawnNewWave();
         }
-
-        if (this.enemiesTypeTotal < this.maxTypeNumPerWave) {
-            if (this.timer >= 2f) {
-                SpawnNewEnemy();
-                this.timer = 0f;
+        if (waveNum <= waveMaxNum) {
+            if (this.enemiesTypeTotal < this.maxTypeNumPerWave) {
+                if (this.timer >= 2f) {
+                    SpawnNewEnemy();
+                    Debug.Log("WaveNumber: " + this.waveNum + " EnemyTotal: " + this.enemiesTotal + " MaxNumPerWave: " + this.maxNumPerWave);
+                    Debug.Log("WaveNumber: " + this.waveNum + " EnemyTypeTotal: " + this.enemiesTypeTotal + " MaxTypeNumPerWave: " + this.maxTypeNumPerWave);
+                    this.timer = 0f;
+                }
+                this.timer += Time.deltaTime;
+            } else if (this.enemiesTotal < this.maxNumPerWave) {
+                this.enemyTypeNum++;
+                if (this.enemyTypeNum == this.enemyType.Length) {
+                    this.enemyTypeNum = 0;
+                }
+                this.enemiesTypeTotal = 0;
+            } else if (this.enemiesTotal > this.maxNumPerWave) {
+                this.waveTimer = this.waveBuff;
+            } else {
+                this.waveTimer += Time.deltaTime;
             }
-            this.timer += Time.deltaTime;
-        } else if(this.enemiesTotal < this.maxNumPerWave) {
-            this.enemyTypeNum++;
-            if (this.enemyTypeNum == this.enemyType.Length) {
-                this.enemyTypeNum = 0;
-            }
-            this.enemiesTypeTotal = 0;
-        } else {
-            this.waveTimer += Time.deltaTime;
         }
     }
 
@@ -82,7 +87,7 @@ public class EnemyManager : MonoBehaviour {
 
     private void SpawnNewWave() {
         this.enemiesTotal = 0;
-        this.maxNumPerWave += 10;
+        //this.maxNumPerWave += 10;
         this.waveNum++;
         this.waveTimer = 0f;
     }

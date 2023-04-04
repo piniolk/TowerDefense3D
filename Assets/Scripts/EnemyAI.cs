@@ -31,7 +31,11 @@ public class EnemyAI : MonoBehaviour {
             GetEnemyMovement();
             transform.rotation = Quaternion.LookRotation((GridMechanics.Instance.GetWorldPosition(this.toPosition) - transform.position).normalized);
             this.canMove = true;
-        } 
+        }
+        //if(transform.rotation < )
+         //   GetEnemyMovement();
+         //   transform.rotation = Quaternion.LookRotation((GridMechanics.Instance.GetWorldPosition(this.toPosition) - transform.position).normalized);
+        Debug.Log(transform.rotation + " " + this.toPosition);
         if(this.canMove){
             transform.Translate(Vector3.forward * this.speed * Time.deltaTime);
         }
