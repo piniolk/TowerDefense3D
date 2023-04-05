@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GridSystem {
 
-    private int width = 15;
-    private int length = 15;
-    private int height = 2;
+    private int width = 17;
+    private int length = 17;
+    private int height = 10;
     private int cellSize = 2;
     private GridObject[,,] gridObjectArray;
 

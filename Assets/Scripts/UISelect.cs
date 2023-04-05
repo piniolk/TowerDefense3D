@@ -50,6 +50,8 @@ public class UISelect : MonoBehaviour {
         isCurrentlyPlacingTower = true;
     }
 
+    // TOWER IS PLACING INSIDE OF BG TOWER, FIX
+
     private void PlaceTower() {
         if (isCurrentlyPlacingTower) {
             if (MousePosition.Instance.TryGetWorldPosition()) {
