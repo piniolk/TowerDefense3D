@@ -58,7 +58,7 @@ public class EnemyAI : MonoBehaviour {
     }
 
     public bool CheckIfAtGridPosition() {
-        float overBlub = .1f;
+        float overBlub = .3f;
         Vector3 targetPos = GridMechanics.Instance.GetWorldPosition(this.toPosition);
         if (Mathf.Abs(transform.position.x - targetPos.x) < overBlub &&
             Mathf.Abs(transform.position.z - targetPos.z) < overBlub) {
