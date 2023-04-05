@@ -6,7 +6,7 @@ public class GridSystem {
 
     private int width = 17;
     private int length = 17;
-    private int height = 10;
+    private int height = 7;
     private int cellSize = 2;
     private GridObject[,,] gridObjectArray;
 

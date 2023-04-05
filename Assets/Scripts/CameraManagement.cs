@@ -20,7 +20,7 @@ public class CameraManagement : MonoBehaviour {
 
     private void RotateCamera() {
         if (playerControlActions.Camera.Rotation.ReadValue<float>() < 0) {
-            float rotateSpeed = 50f;
+            float rotateSpeed = 75f;
             Vector3 rotation = new Vector3(0, 1, 0);
             transform.eulerAngles += rotation * rotateSpeed * Time.deltaTime;
         }
@@ -32,9 +32,9 @@ public class CameraManagement : MonoBehaviour {
     }
 
     private void ZoomCamera() {
-        float zoomSpeed = 100f;
-        float minZoom = 60f;
-        float maxZoom = 30f;
+        float zoomSpeed = 200f;
+        float minZoom = 80f;
+        float maxZoom = 30f; 
         if (playerControlActions.Camera.Scroll.ReadValue<float>() < 0) {
             //zoom out
             camera.fieldOfView += Mathf.RoundToInt(Time.deltaTime * zoomSpeed);
