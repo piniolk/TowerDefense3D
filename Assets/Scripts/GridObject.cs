@@ -33,8 +33,10 @@ public class GridObject {
         if (!this.isFilled && isPlaceable) {
             this.isFilled = true;
             this.tower = tower;
+            Debug.Log("true");
             return true;
         }
+        Debug.Log("false");
         return false;
     }
 

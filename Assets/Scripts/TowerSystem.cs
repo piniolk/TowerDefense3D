@@ -46,7 +46,7 @@ public class TowerSystem : MonoBehaviour {
                 if (!EventSystem.current.IsPointerOverGameObject()) {
                     GameObject towerClicked = raycastHit.transform.gameObject;
                     Vector3 towerClickedPos = towerClicked.GetComponent<Transform>().position;
-                    towerClickedPos.y -= 1;
+                    //towerClickedPos.y -= 1;
                     GridPosition gridPos = GridMechanics.Instance.GetGridPosition(towerClickedPos);
                     GridObject gridObject = GridMechanics.Instance.GetTower(gridPos);
 

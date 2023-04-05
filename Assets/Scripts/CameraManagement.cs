@@ -59,8 +59,8 @@ public class CameraManagement : MonoBehaviour {
         if (playerControlActions.Camera.YLevel.ReadValue<float>() > 0) {
             gameObject.transform.Translate(Vector3.up * Time.deltaTime * moveSpeed);
         }
-        if(gameObject.transform.position.y < 0f) {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 0f, gameObject.transform.position.z);
+        if(gameObject.transform.position.y < -2f) {
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, -2f, gameObject.transform.position.z);
         }
         if(gameObject.transform.position.y > 10f) {
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 10f, gameObject.transform.position.z);

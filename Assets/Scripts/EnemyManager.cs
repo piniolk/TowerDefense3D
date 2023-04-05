@@ -53,8 +53,8 @@ public class EnemyManager : MonoBehaviour {
             if (this.enemiesTypeTotal < this.maxTypeNumPerWave) {
                 if (this.timer >= 2f) {
                     SpawnNewEnemy();
-                    Debug.Log("WaveNumber: " + this.waveNum + " EnemyTotal: " + this.enemiesTotal + " MaxNumPerWave: " + this.maxNumPerWave);
-                    Debug.Log("WaveNumber: " + this.waveNum + " EnemyTypeTotal: " + this.enemiesTypeTotal + " MaxTypeNumPerWave: " + this.maxTypeNumPerWave);
+                    //Debug.Log("WaveNumber: " + this.waveNum + " EnemyTotal: " + this.enemiesTotal + " MaxNumPerWave: " + this.maxNumPerWave);
+                    //Debug.Log("WaveNumber: " + this.waveNum + " EnemyTypeTotal: " + this.enemiesTypeTotal + " MaxTypeNumPerWave: " + this.maxTypeNumPerWave);
                     this.timer = 0f;
                 }
                 this.timer += Time.deltaTime;
