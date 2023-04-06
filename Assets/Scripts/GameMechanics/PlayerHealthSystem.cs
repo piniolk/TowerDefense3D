@@ -22,9 +22,12 @@ public class PlayerHealthSystem : MonoBehaviour {
         health = 100;
     }
 
-    public void ReachedByEnemy() {
-        health--;
+    public void ReachedByEnemy(int damage) {
+        health -= damage;
         UpdateHealth();
+        if (health < 0) {
+            Debug.Log("Trigger lose sequence");
+        }
     }
 
     private void UpdateHealth() {

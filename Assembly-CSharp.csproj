@@ -56,26 +56,28 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\GridMechanics.cs" />
-    <Compile Include="Assets\Scripts\Testing.cs" />
-    <Compile Include="Assets\Scripts\UISelect.cs" />
-    <Compile Include="Assets\Scripts\TowerAttackRangeCollider.cs" />
-    <Compile Include="Assets\Scripts\CameraManagement.cs" />
-    <Compile Include="Assets\Scripts\PlayerHealthSystem.cs" />
-    <Compile Include="Assets\Scripts\TowerUIMenu.cs" />
-    <Compile Include="Assets\Scripts\GridSystem.cs" />
-    <Compile Include="Assets\Scripts\TowerBase.cs" />
-    <Compile Include="Assets\Scripts\LevelManager.cs" />
-    <Compile Include="Assets\Scripts\GridPosition.cs" />
-    <Compile Include="Assets\Scripts\MousePosition.cs" />
-    <Compile Include="Assets\Scripts\EnemyManager.cs" />
-    <Compile Include="Assets\Scripts\PaymentSystem.cs" />
-    <Compile Include="Assets\PlayerControlActions.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\GridMechanics.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\Testing.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\UISelect.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerAttackRangeCollider.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\CameraManagement.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\PlayerHealthSystem.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerUIMenu.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\GridSystem.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerBase.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\GridPosition.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\MousePosition.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\EnemyManager.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\PaymentSystem.cs" />
+    <Compile Include="Assets\InputControls\PlayerControlActions.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\Scripts\FaceTowardCamera.cs" />
-    <Compile Include="Assets\Scripts\TowerSystem.cs" />
-    <Compile Include="Assets\Scripts\EnemyAI.cs" />
-    <Compile Include="Assets\Scripts\GridObject.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\FaceTowardCamera.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerSystem.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\EnemyAI.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\GridObject.cs" />
+    <Compile Include="Assets\Scripts\TitleScreen.cs" />
+    <Compile Include="Assets\Scripts\LevelSelectScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TutorialInfo\TextMesh Pro\Shaders\TMPro.cginc" />

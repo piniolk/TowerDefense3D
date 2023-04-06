@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class EnemyAI : MonoBehaviour {
 
     protected int health;
+    [SerializeField] protected int damageToPlayer;
     [SerializeField] protected int __maxHealth__;
     protected bool canMove;
     [SerializeField] protected float speed;
@@ -18,6 +19,7 @@ public class EnemyAI : MonoBehaviour {
     protected void Start() {
         this.canMove = true;
         //this.__maxHealth__ = 100;
+        //this.damageToPlayer = 5;
         this.health = this.__maxHealth__;
         //this.speed = 2f;
         //this.coinsDropped = 10f;
@@ -32,10 +34,6 @@ public class EnemyAI : MonoBehaviour {
             transform.rotation = Quaternion.LookRotation((GridMechanics.Instance.GetWorldPosition(this.toPosition) - transform.position).normalized);
             this.canMove = true;
         }
-        //if(transform.rotation < )
-         //   GetEnemyMovement();
-         //   transform.rotation = Quaternion.LookRotation((GridMechanics.Instance.GetWorldPosition(this.toPosition) - transform.position).normalized);
-        //Debug.Log(transform.rotation + " " + this.toPosition);
         if(this.canMove){
             transform.Translate(Vector3.forward * this.speed * Time.deltaTime);
         }
@@ -90,7 +88,7 @@ public class EnemyAI : MonoBehaviour {
             check++;
         }
         if (movementPath.Count == 0) {
-            PlayerHealthSystem.Instance.ReachedByEnemy();
+            PlayerHealthSystem.Instance.ReachedByEnemy(this.damageToPlayer);
             Death();
         } else {
             movementPath.RemoveAt(0);

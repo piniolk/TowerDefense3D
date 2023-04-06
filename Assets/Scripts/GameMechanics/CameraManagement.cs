@@ -32,7 +32,7 @@ public class CameraManagement : MonoBehaviour {
     }
 
     private void ZoomCamera() {
-        float zoomSpeed = 200f;
+        float zoomSpeed = 300f;
         float minZoom = 80f;
         float maxZoom = 30f; 
         if (playerControlActions.Camera.Scroll.ReadValue<float>() < 0) {

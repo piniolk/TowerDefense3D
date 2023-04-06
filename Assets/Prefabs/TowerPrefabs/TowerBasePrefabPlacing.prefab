@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4537740336827947512}
   - component: {fileID: 4537740336827947511}
   m_Layer: 8
-  m_Name: TowerBasePlacingPrefab
+  m_Name: TowerBasePrefabPlacing
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
