@@ -29,9 +29,6 @@ public class EnemyManager : MonoBehaviour {
             return;
         }
         Instance = this;
-    }
-
-    private void Start() {
         this.waveBuff = 7f;
         this.timer = 0f; ;
         this.waveTimer = this.waveBuff;
@@ -40,21 +37,26 @@ public class EnemyManager : MonoBehaviour {
         this.enemiesTotal = 0;
         this.enemiesTypeTotal = 0;
         this.waveNum = 0;
-        this.waveMaxNum = 5;
-        this.maxNumPerWave = 30; 
+        this.waveMaxNum = 1;
+        this.maxNumPerWave = 30;
         this.maxTypeNumPerWave = 10;
     }
 
+
     private void Update() {
         if (this.waveTimer >= this.waveBuff) {
-            SpawnNewWave();
+            if (this.waveNum >= this.waveMaxNum) {
+                if (this.enemiesAlive <= 0) {
+                    WinLossSystem.Instance.WinGame();
+                }
+            } else {
+                SpawnNewWave();
+            }
         }
         if (waveNum <= waveMaxNum) {
             if (this.enemiesTypeTotal < this.maxTypeNumPerWave) {
                 if (this.timer >= 2f) {
                     SpawnNewEnemy();
-                    //Debug.Log("WaveNumber: " + this.waveNum + " EnemyTotal: " + this.enemiesTotal + " MaxNumPerWave: " + this.maxNumPerWave);
-                    //Debug.Log("WaveNumber: " + this.waveNum + " EnemyTypeTotal: " + this.enemiesTypeTotal + " MaxTypeNumPerWave: " + this.maxTypeNumPerWave);
                     this.timer = 0f;
                 }
                 this.timer += Time.deltaTime;
@@ -69,7 +71,7 @@ public class EnemyManager : MonoBehaviour {
             } else {
                 this.waveTimer += Time.deltaTime;
             }
-        }
+        } 
     }
 
     public void EnemyDeath() {

@@ -71,7 +71,6 @@ public class UISelect : MonoBehaviour {
                                 PaymentSystem.Instance.BuyTower();
                                 GridMechanics.Instance.GetTower(gridPos).GetTower().GetComponent<TowerBase>().ChangeTowerCost();
                                 GridMechanics.Instance.GetTower(gridPos).GetTower().GetComponent<TowerUIMenu>().UpdateText();
-                                Debug.Log(gridPos);
                                 TowerSystem.Instance.HandleUISelect(GridMechanics.Instance.GetTower(gridPos));
                             }
                         }

@@ -16,17 +16,16 @@ public class PlayerHealthSystem : MonoBehaviour {
             return;
         }
         Instance = this;
+        health = 1;
+        UpdateHealth();
     }
 
-    private void Start() {
-        health = 100;
-    }
 
     public void ReachedByEnemy(int damage) {
         health -= damage;
         UpdateHealth();
-        if (health < 0) {
-            Debug.Log("Trigger lose sequence");
+        if (health <= 0) {
+            WinLossSystem.Instance.LoseGame();
         }
     }
 

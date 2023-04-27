@@ -14,9 +14,6 @@ public class PaymentSystem : MonoBehaviour {
 
     private void Awake() {
         Instance = this;
-    }
-
-    private void Start() {
         this.coins = 0;
         this.coinMultiplier = 10f;
     }

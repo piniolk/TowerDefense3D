@@ -7,7 +7,7 @@ public class CameraManagement : MonoBehaviour {
     [SerializeField] private Camera camera;
     private PlayerControlActions playerControlActions;
 
-    private void Start() {
+    private void Awake() {
         playerControlActions = new PlayerControlActions();
         playerControlActions.Camera.Enable();
     }
@@ -48,6 +48,37 @@ public class CameraManagement : MonoBehaviour {
         }
         if (camera.fieldOfView <= maxZoom) {
             camera.fieldOfView = maxZoom;
+        }
+    }
+
+    private void ZoomCameraV2() {
+        float zoomSpeed = 300f;
+        float moveSpeed = 10f;
+        float minZoom = 80f;
+        float maxZoom = 30f;
+
+
+        if (playerControlActions.Camera.Scroll.ReadValue<float>() < 0) {
+            //zoom out
+            //rotate downwards as it rises and goes back to original position
+
+            gameObject.transform.Translate(Vector3.up * Time.deltaTime * moveSpeed);
+
+        }
+        if (playerControlActions.Camera.Scroll.ReadValue<float>() > 0) {
+            //zoom in
+            //rotate upwards as it lowers and goes closer to center
+
+            gameObject.transform.Translate(Vector3.down * Time.deltaTime * moveSpeed);
+
+        }
+        if (camera.fieldOfView >= minZoom) {
+
+
+        }
+        if (camera.fieldOfView <= maxZoom) {
+
+
         }
     }
 

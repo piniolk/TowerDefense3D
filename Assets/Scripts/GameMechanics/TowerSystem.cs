@@ -20,9 +20,6 @@ public class TowerSystem : MonoBehaviour {
             return;
         }
         Instance = this;
-    }
-
-    private void Start() {
         playerControlActions = new PlayerControlActions();
         playerControlActions.Mouse.Enable();
         timer = 0f;
