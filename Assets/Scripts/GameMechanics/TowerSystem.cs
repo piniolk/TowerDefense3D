@@ -9,6 +9,7 @@ public class TowerSystem : MonoBehaviour {
     public static TowerSystem Instance { get; private set; }
     [SerializeField] private LayerMask towerLayerMask;
     [SerializeField] private GameObject towerTypes;
+    [SerializeField] private GameObject towerUIObject;
     private PlayerControlActions playerControlActions;
     private float timer;
     private GridObject selectedGridObject;
@@ -76,7 +77,18 @@ public class TowerSystem : MonoBehaviour {
         return this.towerTypes;
     }
 
+    public GridObject GetSelectedTower() {
+        return this.selectedGridObject;
+    }
+
     public void SetNullToSelectedTower() {
         this.selectedGridObject = null;
+    }
+
+    public void ToggleTowerUIObject() {
+        towerUIObject.SetActive(!towerUIObject.activeSelf);
+        if (towerUIObject.activeSelf) {
+            towerUIObject.GetComponent<TowerUIMenuObject>().UpdateText();
+        }
     }
 }

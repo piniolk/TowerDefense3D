@@ -47,8 +47,12 @@ public class TowerBase : MonoBehaviour {
     }
 
     public void HandleTowerInfo() {
-        towerInfoUI.SetActive(!towerInfoUI.activeSelf);
+        //towerInfoUI.SetActive(!towerInfoUI.activeSelf);
+        //attackRadius.GetComponent<MeshRenderer>().enabled = !attackRadius.GetComponent<MeshRenderer>().enabled;
+        TowerSystem.Instance.ToggleTowerUIObject();
+
         attackRadius.GetComponent<MeshRenderer>().enabled = !attackRadius.GetComponent<MeshRenderer>().enabled;
+
     }
 
     public int GetTowerCost() {
@@ -115,7 +119,7 @@ public class TowerBase : MonoBehaviour {
             this.towerLevel.ToString(),
             this.damage.ToString(),
             this.rateOfFire.ToString(),
-            this.attackRadius.ToString()
+            this.attackRadiusScale.ToString()
         };
         return upgradeInfo;
     }
