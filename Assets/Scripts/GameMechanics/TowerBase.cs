@@ -13,6 +13,7 @@ public class TowerBase : MonoBehaviour {
     protected float rateOfFire;
     protected float timer;
     protected bool canFire = false;
+    protected string towerName = "Basic Tower";
     [SerializeField] protected GameObject attackRadius;
     [SerializeField] protected GameObject towerInfoUI;
     [SerializeField] protected TowerAttackRangeCollider attackRange;
@@ -122,5 +123,10 @@ public class TowerBase : MonoBehaviour {
             this.attackRadiusScale.ToString()
         };
         return upgradeInfo;
+    }
+
+    public string GetTowerName() {
+        Debug.Log(this.towerName);
+        return this.towerName;
     }
 }

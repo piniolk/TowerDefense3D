@@ -10,7 +10,6 @@ public class PaymentSystem : MonoBehaviour {
     private float coins;
     private float coinMultiplier;
     [SerializeField] private TextMeshProUGUI coinText;
-    private int coinCost = 100; // refactor later
 
     private void Awake() {
         Instance = this;
@@ -27,11 +26,6 @@ public class PaymentSystem : MonoBehaviour {
 
     public float GetCoins() {
         return this.coins;
-    }
-
-    public void BuyTower() {
-        this.coins -= this.coinCost;
-        this.coinText.text = this.coins.ToString("#.0");
     }
 
     public void BuyTower(int coins) {

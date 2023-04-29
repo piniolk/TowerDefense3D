@@ -16,7 +16,7 @@ public class PlayerHealthSystem : MonoBehaviour {
             return;
         }
         Instance = this;
-        health = 1;
+        health = 100;
         UpdateHealth();
     }
 

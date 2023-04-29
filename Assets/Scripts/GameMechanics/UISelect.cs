@@ -43,6 +43,21 @@ public class UISelect : MonoBehaviour {
         }
     }
 
+    public void GeneralTowerButtonClick() {
+        //refactor later
+        if ((float)PaymentSystem.Instance.GetCoins() > TowerSystem.Instance.GetTowerType().GetComponent<TowerBase>().GetTowerCost()) {
+            if (isCurrentlyPlacingTower) {
+                //button was pressed and want to cancel
+                isCurrentlyPlacingTower = false;
+                Destroy(placingTower);
+                placingTower = null;
+            } else {
+                //button has not been pressed yet
+                NewTower();
+            }
+        }
+    }
+
     private void NewTower() {
         Vector3 mousePosition = MousePosition.Instance.GetWorldPosition();
         //mousePosition.y += 1;
@@ -68,7 +83,7 @@ public class UISelect : MonoBehaviour {
                                 placingTower = Instantiate(testTowerBasePrefab, worldPos, Quaternion.identity) as GameObject;
                                 GridMechanics.Instance.PlaceTower(gridPos, placingTower);
                                 isCurrentlyPlacingTower = false;
-                                PaymentSystem.Instance.BuyTower();
+                                PaymentSystem.Instance.BuyTower(GridMechanics.Instance.GetTower(gridPos).GetTower().GetComponent<TowerBase>().GetTowerCost());
                                 GridMechanics.Instance.GetTower(gridPos).GetTower().GetComponent<TowerBase>().ChangeTowerCost();
                                 GridMechanics.Instance.GetTower(gridPos).GetTower().GetComponent<TowerUIMenu>().UpdateText();
                                 TowerSystem.Instance.HandleUISelect(GridMechanics.Instance.GetTower(gridPos));
