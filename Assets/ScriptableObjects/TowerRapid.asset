@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a044260a4cc5ec44590ef4417dc7ab95, type: 3}
+  m_Name: TowerRapid
+  m_EditorClassIdentifier: 
+  towerModel: {fileID: 4537740336827947508, guid: 2d3e79b6fb7c4f9469e372f0483a202a,
+    type: 3}
+  towerPlacingModel: {fileID: 4537740336827947508, guid: ebc66dd553ccbcc4c9d022636e1ed900,
+    type: 3}

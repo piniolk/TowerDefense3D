@@ -8,8 +8,10 @@ public class UISelect : MonoBehaviour {
 
     public static UISelect Instance { get; private set; }
     [SerializeField] private LayerMask placeableLayerMask;
-    [SerializeField] private GameObject testTowerBasePrefab;
-    [SerializeField] private GameObject testTowerPlacingPrefab;
+    //[SerializeField] private GameObject testTowerBasePrefab;
+    //[SerializeField] private GameObject testTowerPlacingPrefab;
+    private GameObject towerPrefab;
+    private GameObject towerPlacingPrefab;
     private GameObject placingTower;
     private bool isCurrentlyPlacingTower;
     private PlayerControlActions playerControlActions;
@@ -61,7 +63,7 @@ public class UISelect : MonoBehaviour {
     private void NewTower() {
         Vector3 mousePosition = MousePosition.Instance.GetWorldPosition();
         //mousePosition.y += 1;
-        placingTower = Instantiate(testTowerPlacingPrefab, mousePosition, Quaternion.identity) as GameObject;
+        placingTower = Instantiate(towerPlacingPrefab, mousePosition, Quaternion.identity) as GameObject;
         isCurrentlyPlacingTower = true;
     }
 
@@ -80,7 +82,7 @@ public class UISelect : MonoBehaviour {
                         if (GridMechanics.Instance.CheckIfInGrid(gridPos)) {
                             if (GridMechanics.Instance.CheckIfPlaceable(gridPos) && GridMechanics.Instance.CheckIfFillable(gridPos)) {
                                 Destroy(placingTower);
-                                placingTower = Instantiate(testTowerBasePrefab, worldPos, Quaternion.identity) as GameObject;
+                                placingTower = Instantiate(towerPrefab, worldPos, Quaternion.identity) as GameObject;
                                 GridMechanics.Instance.PlaceTower(gridPos, placingTower);
                                 isCurrentlyPlacingTower = false;
                                 PaymentSystem.Instance.BuyTower(GridMechanics.Instance.GetTower(gridPos).GetTower().GetComponent<TowerBase>().GetTowerCost());
@@ -97,5 +99,13 @@ public class UISelect : MonoBehaviour {
 
     public bool GetIfCurrentlyPlacingTower() {
         return this.isCurrentlyPlacingTower;
+    }
+
+    public void SetTowerPrefab(GameObject tower) {
+        this.towerPrefab = tower;
+    }
+
+    public void SetTowerPlacingPrefab(GameObject tower) {
+        this.towerPlacingPrefab = tower;
     }
 }

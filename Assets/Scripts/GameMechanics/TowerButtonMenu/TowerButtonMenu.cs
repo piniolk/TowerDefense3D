@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 
 public class TowerButtonMenu : MonoBehaviour {
-    [SerializeField] private TowerObject[] towerObjectsList;
     [SerializeField] private Transform towerButtonsContainer;
     [SerializeField] private Button buttonTower;
 
@@ -20,19 +19,18 @@ public class TowerButtonMenu : MonoBehaviour {
         }
 
         // create new buttons
-        foreach (TowerObject tower in towerObjectsList) {
-            Button actionButton = Instantiate(buttonTower, towerButtonsContainer);
+        TowerObject[] towerList = TowerSystem.Instance.GetTowerObjectList();
+        foreach (TowerObject tower in towerList) {
+            Button actionButton = Instantiate(buttonTower, towerButtonsContainer); 
             TextMeshProUGUI buttonText = actionButton.GetComponentInChildren<TextMeshProUGUI>();
             GameObject towerObj = tower.towerModel.gameObject;
             buttonText.text = towerObj.GetComponent<TowerBase>().GetTowerName();
-
-            buttonTower.onClick.AddListener(OnClick);
+            Debug.Log(towerObj.GetComponent<TowerBase>().GetTowerName());
+            actionButton.onClick.AddListener(() => {
+                UISelect.Instance.SetTowerPrefab(tower.towerModel);
+                UISelect.Instance.SetTowerPlacingPrefab(tower.towerPlacingModel);
+                UISelect.Instance.TowerButtonClick();
+            });
         }
-    }
-
-    private void OnClick() {
-        Debug.Log("In Listener 1");
-        //UISelect.Instance.TowerButtonClick();
-        //Debug.Log("In Listener 2");
     }
 }

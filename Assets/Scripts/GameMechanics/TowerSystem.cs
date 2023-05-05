@@ -8,6 +8,7 @@ public class TowerSystem : MonoBehaviour {
 
     public static TowerSystem Instance { get; private set; }
     [SerializeField] private LayerMask towerLayerMask;
+    [SerializeField] private TowerObject[] towerObjectsList;
     [SerializeField] private GameObject towerTypes;
     [SerializeField] private GameObject towerUIObject;
     private PlayerControlActions playerControlActions;
@@ -71,6 +72,10 @@ public class TowerSystem : MonoBehaviour {
             selectedGridObject = tower;
         }
         tower.HandleTowerInfo();
+    }
+
+    public TowerObject[] GetTowerObjectList() {
+        return this.towerObjectsList;
     }
 
     public GameObject GetTowerType() {

@@ -56,32 +56,33 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\GameMechanics\GridMechanics.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\Grid\GridMechanics.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Testing.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\UISelect.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerButtonMenu\UISelect.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\TowerObject.cs" />
     <Compile Include="Assets\Scripts\LevelSelectScreen.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\TowerAttackRangeCollider.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerUI\TowerAttackRangeCollider.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\CameraManagement.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\PlayerHealthSystem.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\TowerUIMenu.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\GridSystem.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\TowerBase.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\TowerButtonMenu.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerUI\TowerUIMenu.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\Grid\GridSystem.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerPrefabScripts\TowerBase.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerButtonMenu\TowerButtonMenu.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\LevelManager.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\GridPosition.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\Grid\GridPosition.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\MousePosition.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\PaymentSystem.cs" />
     <Compile Include="Assets\InputControls\PlayerControlActions.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\WinLossSystem.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\TowerUIMenuObject.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerUI\TowerUIMenuObject.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\FaceTowardCamera.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\TowerSystem.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\EnemyAI.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\GridObject.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\Grid\GridObject.cs" />
     <Compile Include="Assets\Scripts\TitleScreen.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerPrefabScripts\TowerRapid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TutorialInfo\TextMesh Pro\Shaders\TMPro.cginc" />

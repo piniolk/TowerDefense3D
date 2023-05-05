@@ -13,13 +13,14 @@ public class TowerBase : MonoBehaviour {
     protected float rateOfFire;
     protected float timer;
     protected bool canFire = false;
-    protected string towerName = "Basic Tower";
+    //protected string towerName;
+    //private string towerName = "Basic Tower";
     [SerializeField] protected GameObject attackRadius;
     [SerializeField] protected GameObject towerInfoUI;
     [SerializeField] protected TowerAttackRangeCollider attackRange;
     //private List<GameObject> enemiesInRange;
 
-    protected void Awake() {
+    protected virtual void Awake() {
         this.damage = 20;
         this.towerCost = 100;
         this.towerLevel = 1;
@@ -29,7 +30,7 @@ public class TowerBase : MonoBehaviour {
         this.timer = this.rateOfFire;
     }
 
-    protected void Update() {
+    protected virtual void Update() {
         if (canFire) {
             //this.enemiesInRange = attackRange.GetEnemiesInRange();
             if (attackRange.GetLength() != 0) {
@@ -41,6 +42,10 @@ public class TowerBase : MonoBehaviour {
         if (timer <= 0) {
             canFire = true;
         }
+    }
+
+    public virtual string GetTowerName() {
+        return "Basic Tower";
     }
 
     public int GetDamageDealt() {
@@ -123,10 +128,5 @@ public class TowerBase : MonoBehaviour {
             this.attackRadiusScale.ToString()
         };
         return upgradeInfo;
-    }
-
-    public string GetTowerName() {
-        Debug.Log(this.towerName);
-        return this.towerName;
     }
 }

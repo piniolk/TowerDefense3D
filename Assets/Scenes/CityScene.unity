@@ -799,9 +799,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272d3ba4fbf943d4fbf96411393f5455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerObjectsList:
-  - {fileID: 11400000, guid: f59249a8f1e23fa4bacd5a0886b356f3, type: 2}
-  - {fileID: 11400000, guid: f59249a8f1e23fa4bacd5a0886b356f3, type: 2}
   towerButtonsContainer: {fileID: 96026284}
   buttonTower: {fileID: 4497612570691526241, guid: e10eaec5924fe54408220a1ec882adfa,
     type: 3}
@@ -17769,6 +17766,9 @@ MonoBehaviour:
   towerLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  towerObjectsList:
+  - {fileID: 11400000, guid: f59249a8f1e23fa4bacd5a0886b356f3, type: 2}
+  - {fileID: 11400000, guid: 1685796e0001f4b48b66078d7d6d9998, type: 2}
   towerTypes: {fileID: 4537740336827947508, guid: fd6729432a0c53142a96c65ec84e679a,
     type: 3}
   towerUIObject: {fileID: 1444295427}
