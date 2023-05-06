@@ -13,11 +13,8 @@ public class GridMechanics : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-        gridSystem = new GridSystem();
-    }
-
-    private void Start() {
         Instance = this;
+        gridSystem = new GridSystem();
     }
 
     public Vector3 GetWorldPosition(GridPosition gridPosition) {

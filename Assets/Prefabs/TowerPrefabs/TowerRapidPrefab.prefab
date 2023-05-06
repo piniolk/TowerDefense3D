@@ -1477,6 +1477,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b94608db5473a4eb8730f675785dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  towerCost: 150
+  maxLevel: 5
+  attackRadiusScale: 5
+  rateOfFire: 0.5
   attackRadius: {fileID: 2306769253335426506}
   towerInfoUI: {fileID: 5166447382149702957}
   attackRange: {fileID: 1027262801828255353}

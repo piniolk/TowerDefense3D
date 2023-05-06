@@ -19,6 +19,7 @@ public class TowerUIMenu : MonoBehaviour {
         GridPosition gridPosition = GridMechanics.Instance.GetGridPosition(gameObject.transform.position);
         GridObject gridObject = GridMechanics.Instance.GetTower(gridPosition);
         TowerSystem.Instance.SetNullToSelectedTower();
+        TowerSystem.Instance.ToggleTowerUIObject();
         gridObject.RemoveTower();
     }
 

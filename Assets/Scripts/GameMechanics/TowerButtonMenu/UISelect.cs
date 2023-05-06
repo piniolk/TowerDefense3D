@@ -17,13 +17,17 @@ public class UISelect : MonoBehaviour {
     private PlayerControlActions playerControlActions;
 
     private void Awake() {
+        if (Instance != null) {
+            Debug.LogError("There's more than one UISelect! " + transform + " - " + Instance);
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
-    }
-
-    private void Start() {
         playerControlActions = new PlayerControlActions();
         playerControlActions.Mouse.Enable();
     }
+
+
 
     private void Update() {
         PlaceTower();

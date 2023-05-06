@@ -5,12 +5,12 @@ using UnityEngine;
 public class TowerBase : MonoBehaviour {
 
     protected GridPosition gridPosition;
-    protected int damage;
-    protected int towerCost;
+    [SerializeField] protected int damage;
+    [SerializeField] protected int towerCost;
     protected int towerLevel;
-    protected int maxLevel;
-    protected float attackRadiusScale;
-    protected float rateOfFire;
+    [SerializeField] protected int maxLevel;
+    [SerializeField] protected float attackRadiusScale;
+    [SerializeField] protected float rateOfFire;
     protected float timer;
     protected bool canFire = false;
     //protected string towerName;
@@ -21,12 +21,12 @@ public class TowerBase : MonoBehaviour {
     //private List<GameObject> enemiesInRange;
 
     protected virtual void Awake() {
-        this.damage = 20;
-        this.towerCost = 100;
+        //this.damage = 20;
+        //this.towerCost = 100;
         this.towerLevel = 1;
-        this.maxLevel = 5;
-        this.attackRadiusScale = 5f;
-        this.rateOfFire = 1f;
+        //this.maxLevel = 5;
+        //this.attackRadiusScale = 5f;
+        //this.rateOfFire = 1f;
         this.timer = this.rateOfFire;
     }
 

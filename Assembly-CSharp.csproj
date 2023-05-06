@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\GameMechanics\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\PaymentSystem.cs" />
     <Compile Include="Assets\InputControls\PlayerControlActions.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerPrefabScripts\TowerRapid.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\WinLossSystem.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\TowerUI\TowerUIMenuObject.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
@@ -82,7 +83,12 @@
     <Compile Include="Assets\Scripts\GameMechanics\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\GameMechanics\Grid\GridObject.cs" />
     <Compile Include="Assets\Scripts\TitleScreen.cs" />
-    <Compile Include="Assets\Scripts\GameMechanics\TowerPrefabScripts\TowerRapid.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerPrefabScripts\TowerAOE.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerPrefabScripts\TowerBuff.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerPrefabScripts\TowerFar.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerPrefabScripts\TowerHeavy.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerPrefabScripts\TowerSlow.cs" />
+    <Compile Include="Assets\Scripts\GameMechanics\TowerPrefabScripts\TowerSniper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TutorialInfo\TextMesh Pro\Shaders\TMPro.cginc" />
