@@ -29,17 +29,17 @@ public class EnemyManager : MonoBehaviour {
             return;
         }
         Instance = this;
-        this.waveBuff = 7f;
-        this.timer = 0f; ;
+        this.waveBuff = EnemySpawningManager.Instance.waveBuff; //change
+        this.timer = 0f;
         this.waveTimer = this.waveBuff;
         this.enemiesAlive = 0;
         this.enemyTypeNum = 0;
         this.enemiesTotal = 0;
         this.enemiesTypeTotal = 0;
         this.waveNum = 0;
-        this.waveMaxNum = 1;
-        this.maxNumPerWave = 30;
-        this.maxTypeNumPerWave = 10;
+        this.waveMaxNum = EnemySpawningManager.Instance.waveMaxNum; //change
+        this.maxNumPerWave = EnemySpawningManager.Instance.maxNumPerWave; //change
+        this.maxTypeNumPerWave = EnemySpawningManager.Instance.maxTypeNumPerWave; //change
     }
 
 
@@ -55,7 +55,7 @@ public class EnemyManager : MonoBehaviour {
         }
         if (waveNum <= waveMaxNum) {
             if (this.enemiesTypeTotal < this.maxTypeNumPerWave) {
-                if (this.timer >= 2f) {
+                if (this.timer >= EnemySpawningManager.Instance.timer) { //change
                     SpawnNewEnemy();
                     this.timer = 0f;
                 }
@@ -80,7 +80,7 @@ public class EnemyManager : MonoBehaviour {
     }
 
     private void SpawnNewEnemy() {
-        GameObject ob = Instantiate(this.enemyType[this.enemyTypeNum], new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        GameObject ob = Instantiate(this.enemyType[this.enemyTypeNum], new Vector3(0, 0, 0), Quaternion.identity) as GameObject;  //change
         this.enemiesAlive++;
         ob.name = "Enemy_" + this.enemiesTotal.ToString();
         this.enemiesTotal++;
@@ -89,7 +89,7 @@ public class EnemyManager : MonoBehaviour {
 
     private void SpawnNewWave() {
         this.enemiesTotal = 0;
-        //this.maxNumPerWave += 10;
+        //this.maxNumPerWave += EnemySpawningManager.Instance.maxNumPerWaveAdjust; //change
         this.waveNum++;
         this.waveTimer = 0f;
     }
